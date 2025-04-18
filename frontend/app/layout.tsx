@@ -3,10 +3,12 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import Header from "@/components/Home/header"
 
 
 import { ClerkProvider } from '@clerk/nextjs'
+import { dark } from '@clerk/themes'
+
+import Header from "@/components/Home/header"
 
 
 const inter = Inter({ subsets: ["latin"] })
@@ -24,7 +26,10 @@ export default function RootLayout({
 }>) {
   return (
 
-  
+    <ClerkProvider 
+    appearance={{
+      baseTheme: dark,
+    }}>
     <html lang="en" suppressHydrationWarning className="h-full">
       <body className={`${inter.className} h-full w-full`}>
         <ThemeProvider 
@@ -34,7 +39,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
 
-      <Header/>
+        <Header/>
 
         <main className="min-h-screen">
         {children}
@@ -46,7 +51,7 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  
+    </ClerkProvider>
   )
 }
 

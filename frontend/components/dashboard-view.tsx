@@ -1,5 +1,5 @@
 "use client"
-
+import { useState } from "react"
 import { AlertTriangle, BookOpen, CheckCircle, Compass, MapPin, Phone, Shield, Users } from "lucide-react"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -7,8 +7,10 @@ import { SafetyMap } from "@/components/safety-map"
 import { EmergencyContacts } from "@/components/emergency-contacts"
 import { SafetyTips } from "@/components/safety-tips"
 import { Badge } from "@/components/ui/badge"
-
+import FakeCall from "./fakecall"
 export function DashboardView() {
+  
+  const [showFakeCall, setShowFakeCall] = useState(false);
   return (
     <div className="container mx-auto p-4 grid grid-cols-1 md:grid-cols-3 gap-6">
       <div className="md:col-span-2 space-y-6">
@@ -45,7 +47,11 @@ export function DashboardView() {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 gap-3">
-                <Button variant="outline" className="h-20 flex flex-col gap-1">
+              <Button
+                  variant="outline"
+                  className="h-20 flex flex-col gap-1"
+                  onClick={() => setShowFakeCall(true)}
+                >
                   <AlertTriangle className="h-5 w-5 text-destructive" />
                   <span>Fake Call</span>
                 </Button>
@@ -142,6 +148,8 @@ export function DashboardView() {
           </CardFooter>
         </Card>
       </div>
+       {/* Modals */}
+       {showFakeCall && <FakeCall onClose={() => setShowFakeCall(false)} />}
     </div>
   )
 }

@@ -107,7 +107,7 @@ const Map: React.FC = () => {
               lat: place.geometry.location.lat(),
               lng: place.geometry.location.lng(),
             }}
-            label="🚓"
+            label="👮"
             onClick={() => setActiveMarker(place.place_id)}
           >
             {activeMarker === place.place_id && (

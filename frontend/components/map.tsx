@@ -94,7 +94,8 @@ const Map: React.FC = () => {
     >
       {/* 🔴 Traffic Layer for real-time traffic */}
      
-      <TrafficLayer autoUpdate />
+      
+       <TrafficLayer autoUpdate />
 
       {/* 🧍 User Location */}
       <Marker position={currentPosition} label="You" />

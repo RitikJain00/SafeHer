@@ -18,7 +18,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ModeToggle } from "@/components/mode-toggle"
 import Link from "next/link"
 
+import { useDbUser } from "@/context/UserContext";
+
 export function AppSidebar() {
+
+  const { dbUser } = useDbUser();
+
   return (
   
 
@@ -121,7 +126,7 @@ export function AppSidebar() {
               <AvatarFallback>SH</AvatarFallback>
             </Avatar>
             <div className="flex flex-col">
-              <span className="text-sm font-medium">Sarah Johnson</span>
+              <span className="text-sm font-medium">{dbUser?.name}</span>
               <span className="text-xs text-muted-foreground">Premium</span>
             </div>
           </div>

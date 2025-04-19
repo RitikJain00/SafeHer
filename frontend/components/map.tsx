@@ -93,12 +93,13 @@ const Map: React.FC = () => {
       onLoad={onMapLoad}
     >
       {/* 🔴 Traffic Layer for real-time traffic */}
+     
       <TrafficLayer autoUpdate />
 
       {/* 🧍 User Location */}
       <Marker position={currentPosition} label="You" />
 
-      {/* 🚓 Nearby Police Stations */}
+      {/* 👮 Nearby Police Stations */}
       {!loading &&
         places.map((place) => (
           <Marker
@@ -111,7 +112,7 @@ const Map: React.FC = () => {
             onClick={() => setActiveMarker(place.place_id)}
           >
             {activeMarker === place.place_id && (
-              <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+              <InfoWindow  onCloseClick={() => setActiveMarker(null)}>
                 <div>
                   <h3 className='text-black'><b>{place.name}</b></h3>
                   <p className='text-black'>{place.vicinity}</p>

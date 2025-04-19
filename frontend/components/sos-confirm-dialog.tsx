@@ -64,11 +64,11 @@ const handleConfirm = async () => {
   try {
     const requestBody: SOSRequestBody = {
       message: `🚨 SOS! I need help. My location: ${googleMapsUrl}`,
-      contacts: ["+919999999999"], // Replace with actual numbers
+      contacts: ["+917836086508"], // Replace with actual numbers
     }
 
     const res: AxiosResponse<SOSResponse> = await axios.post(
-      "http://localhost:5000/sos",
+      "http://localhost:3000/alert/sos",
       requestBody
     )
 

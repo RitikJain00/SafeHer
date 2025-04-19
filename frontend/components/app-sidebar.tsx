@@ -18,7 +18,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ModeToggle } from "@/components/mode-toggle"
 import Link from "next/link"
 
+import { useDbUser } from "@/context/UserContext";
+
 export function AppSidebar() {
+
+  const { dbUser } = useDbUser();
+
   return (
   
 
@@ -116,7 +121,18 @@ export function AppSidebar() {
       <SidebarFooter className="p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
+<<<<<<< HEAD
            
+=======
+            <Avatar>
+              <AvatarImage src="/placeholder.svg?height=40&width=40" alt="User" />
+              <AvatarFallback>SH</AvatarFallback>
+            </Avatar>
+            <div className="flex flex-col">
+              <span className="text-sm font-medium">{dbUser?.name}</span>
+              <span className="text-xs text-muted-foreground">Premium</span>
+            </div>
+>>>>>>> b41560e45cacc01314cb8a0307a8d993f3ec8476
           </div>
           <ModeToggle />
         </div>

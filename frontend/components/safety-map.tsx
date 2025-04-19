@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import SafeMap from "./safe-map"
 import Map from "./map"
 import SafeRoute from "./safe_route"
-export function SafetyMap({isSafeRoute}) {
+export function SafetyMap({isSafeRoute}: any) {
   // Load Google Maps API
   const { isLoaded: googleMapsLoaded } = useJsApiLoader({
     googleMapsApiKey: mapOption.googleMapsApiKey,

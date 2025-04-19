@@ -1,0 +1,101 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String     @id @default(cuid())
+  clerkUserId       String     @unique
+  name              String
+  email             String     @unique
+  phoneNumber       String?
+  location          String?
+  emergencyContacts Contact[]
+  incidents         Incident[]
+  sosAlerts         SosAlert[]
+  createdAt         DateTime   @default(now())
+}
+
+model Contact {
+  id       String  @id @default(cuid())
+  name     String
+  phone    String
+  relation String?
+  user     User    @relation(fields: [userId], references: [id])
+  userId   String
+}
+
+model CrimeZone {
+  id          String   @id @default(cuid())
+  latitude    Float
+  longitude   Float
+  severity    Int // 1 = Green, 2 = Yellow, 3 = Red
+  description String?
+  category    String // e.g., theft, harassment
+  reportedAt  DateTime @default(now())
+}
+
+model Incident {
+  id          String   @id @default(cuid())
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+  location    String
+  description String
+  type        String // Anonymous / Verified
+  date        DateTime @default(now())
+}
+
+model SosAlert {
+  id         String   @id @default(cuid())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  latitude   Float
+  longitude  Float
+  sentAt     DateTime @default(now())
+  autoCalled Boolean  @default(false)
+  status     String // Active / Resolved
+}
+
+model SafePlace {
+  id         String  @id @default(cuid())
+  name       String
+  type       String // hospital, café, pharmacy
+  latitude   Float
+  longitude  Float
+  isVerified Boolean @default(true)
+}
+
+model PoliceStation {
+  id        String @id @default(cuid())
+  name      String
+  contact   String
+  latitude  Float
+  longitude Float
+  area      String
+}
+
+model Tutorial {
+  id         String   @id @default(cuid())
+  title      String
+  type       String // video, guide
+  url        String
+  uploadedAt DateTime @default(now())
+}
+
+model LegalInfo {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  category  String // e.g., rights, laws
+  updatedAt DateTime @updatedAt
+}

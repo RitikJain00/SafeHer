@@ -93,6 +93,7 @@ const Map: React.FC = () => {
         (err) => {
           console.warn("❌ Location error:", err.message);
           setLocationError(`Couldn't access your location: ${err.message}`);
+
           // Fallback to Prayagraj, India (MNNIT)
           setCurrentPosition({ lat: 25.4358, lng: 81.8463 });
         },
@@ -135,6 +136,7 @@ const Map: React.FC = () => {
                 !!place.place_id && !!place.geometry?.location && !!place.name && !!place.vicinity
             );
             console.log(`Found ${filtered.length} police stations nearby`);
+
             setPlaces(filtered);
           } else {
             console.warn("Police station search failed:", status);
@@ -196,6 +198,7 @@ const Map: React.FC = () => {
       
       if (state && district) {
         console.log(`Making API request for ${district}, ${state}`);
+
         
         const response = await axios.post('http://localhost:5000/predict', { 
           state, 

@@ -9,7 +9,9 @@ import { ClerkProvider } from '@clerk/nextjs'
 import { dark } from '@clerk/themes'
 
 import Header from "@/components/Home/header"
+import SyncUser from "@/actions/checkUser"
 
+import { UserProvider } from "@/context/UserContext"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -38,8 +40,10 @@ export default function RootLayout({
           enableSystem 
           disableTransitionOnChange
         >
-
+        
+        <UserProvider>
         <Header/>
+     
 
         <main className="min-h-screen">
         {children}
@@ -48,6 +52,7 @@ export default function RootLayout({
         <footer className="bg-muted/50 py-12">
           <div className="container mx-auto px-4 text-center text-gray-200">Developed by CodeCrafters</div>
         </footer>
+        </UserProvider>
         </ThemeProvider>
       </body>
     </html>

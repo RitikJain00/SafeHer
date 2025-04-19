@@ -81,4 +81,35 @@ router.post("/fake-call", (req, res) => __awaiter(void 0, void 0, void 0, functi
         res.status(500).json({ message: "Error triggering fake call", error: err });
     }
 }));
+router.post("/send-audio-sms", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { to, audioUrl } = req.body;
+    // Minimal validation
+    if (!to || !audioUrl) {
+        res.status(400).json({ error: "Missing 'to' or 'audioUrl'" });
+        return;
+    }
+    try {
+        // Fix: Added proper backticks for template literal
+        const formattedTo = to.startsWith('+') ? to : `+${to}`;
+        // Fix: Added proper template literal for message body
+        const message = yield client.messages.create({
+            body: `⚠ Emergency! Listen to audio: ${audioUrl}`,
+            from: twilioPhone, // Ensure this is defined in your scope
+            to: formattedTo,
+        });
+        // Fix: Consistent response format
+        res.status(200).json({
+            success: true,
+            sid: message.sid
+        });
+    }
+    catch (error) {
+        // Fix: Better error response
+        res.status(500).json({
+            success: false,
+            error: "Failed to send SMS",
+            details: error
+        });
+    }
+}));
 exports.default = router;

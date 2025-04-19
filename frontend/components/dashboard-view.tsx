@@ -61,7 +61,7 @@ export function DashboardView() {
   const [safePlaces, setSafePlaces] = useState([
     { name: "City Police Station", info: "0.8 miles away • Open 24/7" },
   ]); // Adding sample data for safe places
-
+const [showMap, setShowMap] = useState(true);
   // Share Location Handler
   const handleShareLocationClick = () => {
     if (navigator.geolocation) {

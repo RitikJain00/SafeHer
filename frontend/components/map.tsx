@@ -29,6 +29,22 @@ const containerStyle = {
   height: '70vh',
 };
 
+
+// India's bounding box
+const INDIA_BOUNDS = {
+  north: 35.6745457,
+  south: 6.5546079,
+  east: 97.395561,
+  west: 68.1113787,
+};
+function isInIndia(lat: number, lng: number) {
+  return (
+    lat >= INDIA_BOUNDS.south &&
+    lat <= INDIA_BOUNDS.north &&
+    lng >= INDIA_BOUNDS.west &&
+    lng <= INDIA_BOUNDS.east
+  );
+}
 // Safety button style (optional floating button)
 const safetyButtonStyle = {
   position: 'absolute',
@@ -142,7 +158,7 @@ const Map: React.FC = () => {
     setSelectedLocation(clickedLocation);
     setCrimeData(null);
     setSafetyError(null);
-    setShowCrimeButton(true);
+    setShowCrimeButton(isInIndia(clickedLocation.lat, clickedLocation.lng));
   }, []);
 
   // Fetch safety data when button is clicked

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState , useEffect } from "react"
 import { AlertCircle, CheckCircle2, Phone, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
@@ -23,20 +23,48 @@ interface SOSResponse {
 
 
 export function SOSConfirmDialog({ setShowConfirm }: SOSConfirmDialogProps) {
-  const [countdown, setCountdown] = useState(5)
+  const [countdown, setCountdown] = useState(5);
   const [sending, setSending] = useState(false)
   const [sent, setSent] = useState(false)
+  const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null);
 
-  // In a real app, this would be a useEffect with a timer
   
+// Function to get location
+const getLocation = () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setLocation({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+    }, (error) => {
+      console.error(error);
+      alert("Could not fetch location.");
+    });
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
+};
+
+useEffect(() => {
+  getLocation();
+}, []);
 
 const handleConfirm = async () => {
   setSending(true)
 
+  if (!location) {
+    alert("Location not available.")
+    setSending(false)
+    return
+  }
+
+  const googleMapsUrl = `https://www.google.com/maps?q=${location.lat},${location.lng}`;
+
   try {
     const requestBody: SOSRequestBody = {
-      message: "🚨 SOS! I need help. This is my emergency location.",
-      contacts: ["+919343334022"], // Replace with actual numbers
+      message: `🚨 SOS! I need help. My location: ${googleMapsUrl}`,
+      contacts: ["999xxx999x"], // Replace with actual numbers
     }
 
     const res: AxiosResponse<SOSResponse> = await axios.post(
@@ -56,7 +84,6 @@ const handleConfirm = async () => {
     setSending(false)
   }
 }
-
 
   const handleCancel = () => {
     setShowConfirm(false)

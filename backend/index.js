@@ -20,6 +20,33 @@ const client = twilio(accountSid, authToken);
 // Middleware
 app.use(bodyParser.json());
 
+// SOS route to send messages
+app.post('/sos', async (req, res) => {
+  const { message, contacts } = req.body;
+
+  if (!contacts || contacts.length === 0) {
+    return res.status(400).json({ error: 'No contacts provided' });
+  }
+
+  try {
+    const results = [];
+
+    for (const number of contacts) {
+      const msg = await client.messages.create({
+        body: message,
+        from: twilioPhone,
+        to: number,
+      });
+      results.push(msg.sid);
+    }
+
+    res.status(200).json({ success: true, sids: results });
+  } catch (error) {
+    console.error('Twilio Error:', error);
+    res.status(500).json({ error: 'Failed to send SOS messages' });
+  }
+});
+
 // Fake call route
 app.post('/fake-call', (req, res) => {
   const { userPhoneNumber } = req.body;  // Phone number of the user
@@ -38,7 +65,6 @@ app.post('/fake-call', (req, res) => {
       res.status(500).json({ message: 'Error triggering fake call', error: err });
     });
 });
-
 
 // Home route
 app.get('/', (req, res) => {

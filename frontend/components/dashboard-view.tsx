@@ -11,6 +11,7 @@ import FakeCall from "./fakecall"
 export function DashboardView() {
   
   const [showFakeCall, setShowFakeCall] = useState(false);
+const [showMap,setShowMap]=useState(true);
   return (
     <div className="container mx-auto p-4 grid grid-cols-1 md:grid-cols-3 gap-6">
       <div className="md:col-span-2 space-y-6">
@@ -25,14 +26,16 @@ export function DashboardView() {
             <CardDescription>View safety heatmap and nearby safe locations</CardDescription>
           </CardHeader>
           <CardContent className="pb-2">
-            <SafetyMap />
+         {showMap? <SafetyMap isSafeRoute={true}/>:
+         <SafetyMap isSafeRoute={false}/>}
           </CardContent>
           <CardFooter className="flex justify-between">
             <Button variant="outline" size="sm">
               <MapPin className="mr-2 h-4 w-4" />
               View Full Map
             </Button>
-            <Button variant="outline" size="sm">
+            <Button variant="outline" size="sm"
+            onClick={()=>{setShowMap(false)}}>
               <Compass className="mr-2 h-4 w-4" />
               Safe Route
             </Button>

@@ -36,17 +36,8 @@ const HeroSection = () => {
                 </Button>
               </div>
               <div className="flex items-center justify-center md:justify-start gap-4 pt-2">
-              <div className="relative w-16 h-16">
-                <Image
-                  src="/womens.png"
-                  alt="SafeHer App"
-                  fill
-                  className="object-contain" // or object-cover depending on your needs
-                />
-              </div>
-                <div className="text-sm text-muted-foreground">
-                  <span className="font-medium">10,000+</span> women already protected
-                </div>
+              
+                
               </div>
             </div>
             <div className="flex-1 relative">

@@ -116,14 +116,7 @@ export function AppSidebar() {
       <SidebarFooter className="p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Avatar>
-              <AvatarImage src="/placeholder.svg?height=40&width=40" alt="User" />
-              <AvatarFallback>SH</AvatarFallback>
-            </Avatar>
-            <div className="flex flex-col">
-              <span className="text-sm font-medium">Sarah Johnson</span>
-              <span className="text-xs text-muted-foreground">Premium</span>
-            </div>
+           
           </div>
           <ModeToggle />
         </div>

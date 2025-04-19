@@ -39,7 +39,7 @@ export function SafetyMap() {
       ) : (
         <div>
           {/* Render map once everything is loaded */}
-          <Map isLoaded={googleMapsLoaded} />
+          <Map />
         </div>
       )}
     </div>

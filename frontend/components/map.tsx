@@ -91,13 +91,24 @@ const Map: React.FC = () => {
       center={currentPosition}
       zoom={15}
       onLoad={onMapLoad}
+      w-full
+      h-full
     >
       {/* 🔴 Traffic Layer for real-time traffic */}
      
-      <TrafficLayer autoUpdate />
+      <TrafficLayer/>
 
       {/* 🧍 User Location */}
-      <Marker position={currentPosition} label="You" />
+      <Marker 
+  position={currentPosition}
+  label="You"
+  icon={{
+    url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+    scaledSize: new window.google.maps.Size(50, 50), // width, height in pixels
+  }}
+/>
+
+
 
       {/* 👮 Nearby Police Stations */}
       {!loading &&

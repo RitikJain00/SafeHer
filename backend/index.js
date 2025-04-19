@@ -20,6 +20,26 @@ const client = twilio(accountSid, authToken);
 // Middleware
 app.use(bodyParser.json());
 
+// Fake call route
+app.post('/fake-call', (req, res) => {
+  const { userPhoneNumber } = req.body;  // Phone number of the user
+
+  // Simulate a fake call (using Twilio to initiate a call)
+  client.calls
+    .create({
+      url: 'http://demo.twilio.com/docs/voice.xml',  // Placeholder for your fake call logic
+      to: userPhoneNumber,
+      from: twilioPhone,  // Use your Twilio phone number here
+    })
+    .then(call => {
+      res.status(200).json({ message: 'Fake call triggered', callSid: call.sid });
+    })
+    .catch((err) => {
+      res.status(500).json({ message: 'Error triggering fake call', error: err });
+    });
+});
+
+
 // Home route
 app.get('/', (req, res) => {
   res.send('SafeHer Backend is running');

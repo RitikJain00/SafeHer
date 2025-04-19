@@ -5,6 +5,7 @@ import Link from "next/link"
 
 import { AppSidebar } from "@/components/app-sidebar"
 import { SidebarProvider } from "@/components/ui/sidebar"
+import { SafetyMap } from "@/components/safety-map"
 
 export default function Home() {
   return (
@@ -23,13 +24,14 @@ export default function Home() {
         <p className="text-muted-foreground">Find safe routes, emergency places, and get help when you need it.</p>
       </div>
 
-      <div className="relative w-full h-[400px] mb-8 rounded-lg overflow-hidden border">
+      <div className="relative w-full h-[300px] mb-8 rounded-lg overflow-hidden border">
         <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
-          <div className="text-center">
-            <Navigation className="h-12 w-12 mx-auto mb-4 text-teal-600" />
+          
+            {/* <Navigation className="h-12 w-12 mx-auto mb-4 text-teal-600" />
             <p className="text-lg font-medium">Interactive Safety Map</p>
-            <p className="text-sm text-muted-foreground">Shows safe routes and emergency locations</p>
-          </div>
+            <p className="text-sm text-muted-foreground">Shows safe routes and emergency locations</p> */}
+            <SafetyMap/>
+          
         </div>
         <div className="absolute bottom-4 right-4">
           <Button className="bg-teal-600 hover:bg-teal-700">

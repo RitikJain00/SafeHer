@@ -12,17 +12,17 @@ export function SafetyTips() {
     {
       title: "Basic Stance",
       description: "Stand with feet shoulder-width apart, knees slightly bent, and hands up to protect your face.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "https://cdn.shopify.com/s/files/1/0632/8218/4418/t/7/assets/karate-stances.jpg?v=1657596524",
     },
     {
       title: "Palm Strike",
       description: "Use the heel of your palm to strike upward at an attacker's nose or chin.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkvUyJlBBfcY4kjDrSlogRE-bZfc3JqJV07g",
     },
     {
       title: "Elbow Strike",
       description: "Use your elbow to strike an attacker when they are close to you.",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "https://cdn.shopify.com/s/files/1/0632/8218/4418/t/7/assets/karate-blocks.jpg?v=1657596528",
     },
   ]
 

@@ -6,8 +6,8 @@ import { AlertTriangle, CheckCircle, MapPin } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import SafeMap from "./safe-map"
 import Map from "./map"
-
-export function SafetyMap() {
+import SafeRoute from "./safe_route"
+export function SafetyMap({isSafeRoute}) {
   // Load Google Maps API
   const { isLoaded: googleMapsLoaded } = useJsApiLoader({
     googleMapsApiKey: mapOption.googleMapsApiKey,
@@ -16,7 +16,7 @@ export function SafetyMap() {
 
   // Local state to handle map loading state
   const [isLoaded, setIsLoaded] = useState(false)
-
+ 
   // Simulating map loading
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -39,7 +39,8 @@ export function SafetyMap() {
       ) : (
         <div>
           {/* Render map once everything is loaded */}
-          <Map />
+        {isSafeRoute &&  <Map isLoaded={googleMapsLoaded} />}
+        {!isSafeRoute && <SafeRoute/>}
         </div>
       )}
     </div>

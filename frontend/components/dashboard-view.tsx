@@ -60,6 +60,7 @@ export function DashboardView() {
     longitude: number;
   } | null>(null);
   const [isRecording, setIsRecording] = useState(false);
+  const [showMap, setShowMap] = useState(true);
   const [showFullMap, setShowFullMap] = useState(false);
 
   // Share Location Handler
@@ -99,7 +100,8 @@ export function DashboardView() {
             </CardDescription>
           </CardHeader>
           <CardContent className="pb-2">
-            <SafetyMap />
+         {showMap? <SafetyMap isSafeRoute={true}/>:
+         <SafetyMap isSafeRoute={false}/>}
           </CardContent>
           <CardFooter className="flex justify-between">
             <Button
@@ -110,8 +112,8 @@ export function DashboardView() {
               <MapPin className="mr-2 h-4 w-4" />
               View Full Map
             </Button>
-
-            <Button variant="outline" size="sm">
+            <Button variant="outline" size="sm"
+            onClick={()=>{setShowMap(false)}}>
               <Compass className="mr-2 h-4 w-4" />
               Safe Route
             </Button>

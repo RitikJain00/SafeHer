@@ -25,20 +25,21 @@
 
 ## 📽️ Demo Video
 
-[Coming Soon](#)
+(https://drive.google.com/file/d/1J6xf99y4YX6JxI9cr_gRqbNSk7JB0f61/view?usp=sharing)
 
 ---
 
 ## 📊 Presentation
 
-Coming soon
+https://docs.google.com/presentation/d/1ac0uf4eWKY3slW2NrLd3EWwfPFRtTBS1tJUf-7oypLQ/edit?usp=sharing
 
 ---
 
 ## 🧰 Technology Stack
 
 - ⚙️ **Frontend**: TypeScript, Next.js  
-- 🧠 **Backend & AI**: Python, Machine Learning  
+- 🧠 **Backend & AI**: Python, Machine Learning
+- 👉 **Database**: PostgreSQL, Prisma ORM
 - 📡 **APIs**: Google Maps API
 
 ---

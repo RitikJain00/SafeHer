@@ -31,7 +31,7 @@
 
 ## 📊 Presentation
 
-[Click here to view the presentation](https://docs.google.com/document/d/1q_LBPiuw8-IA4X1Dm2E96WfQDCPOj8Ngu7Z2Sg2lDno/edit?tab=t.0)
+Coming soon
 
 ---
 
